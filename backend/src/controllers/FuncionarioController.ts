@@ -20,12 +20,12 @@ export default {
     const { nome, email, senha, cpf, rg, sexo, data_nascimento,
       telefone, celular, endereco, bairro, numero, complemento,
       cep, pais, cidade, estado, cargo, salario,
-      carteira_trabalho } = request.body;
+      carteira_trabalho, data_cadastro } = request.body;
     const funcionarioRepository = getRepository(Funcionario);
     const data = { nome, email, senha, cpf, rg, sexo, data_nascimento,
       telefone, celular, endereco, bairro, numero, complemento,
       cep, pais, cidade, estado, cargo, salario,
-      carteira_trabalho };
+      carteira_trabalho, data_cadastro };
     const schema = Yup.object().shape({
       nome: Yup.string().required(),
       email: Yup.string().required(),
@@ -46,7 +46,8 @@ export default {
       estado: Yup.string().required(),
       cargo: Yup.string().required(),
       salario: Yup.number().required(),
-      carteira_trabalho: Yup.number().required()
+      carteira_trabalho: Yup.number().required(),
+      data_cadastro: Yup.date().required()
     });
     await schema.validate(data, {
       abortEarly: false

@@ -20,12 +20,12 @@ export default {
     const { nome, email, senha, cpf, rg, sexo, data_nascimento,
       telefone, celular, endereco, bairro, numero, complemento,
       cep, pais, cidade, estado, cargo, salario,
-      carteira_trabalho, data_cadastro } = request.body;
+      carteira_trabalho, data_cadastro, ponto_de_referencia, telefone_contato } = request.body;
     const funcionarioRepository = getRepository(Funcionario);
     const data = { nome, email, senha, cpf, rg, sexo, data_nascimento,
       telefone, celular, endereco, bairro, numero, complemento,
       cep, pais, cidade, estado, cargo, salario,
-      carteira_trabalho, data_cadastro };
+      carteira_trabalho, data_cadastro, ponto_de_referencia, telefone_contato };
     const schema = Yup.object().shape({
       nome: Yup.string().required(),
       email: Yup.string().required(),
@@ -47,6 +47,8 @@ export default {
       cargo: Yup.string().required(),
       salario: Yup.number().required(),
       carteira_trabalho: Yup.number().required(),
+      ponto_de_referencia: Yup.string().required(),
+      telefone_contato: Yup.number().required(),
       data_cadastro: Yup.date().required()
     });
     await schema.validate(data, {
@@ -66,12 +68,12 @@ export default {
     const { id, nome, email, senha, cpf, rg, sexo, data_nascimento,
       telefone, celular, endereco, bairro, numero, complemento,
       cep, pais, cidade, estado, cargo, salario,
-      carteira_trabalho } = request.body;
+      carteira_trabalho, ponto_de_referencia, telefone_contato } = request.body;
     const funcionarioRepository = getRepository(Funcionario);
     const data = { nome, email, senha, cpf, rg, sexo, data_nascimento,
       telefone, celular, endereco, bairro, numero, complemento,
       cep, pais, cidade, estado, cargo, salario,
-      carteira_trabalho };
+      carteira_trabalho, ponto_de_referencia, telefone_contato };
     const schema = Yup.object().shape({
       nome: Yup.string().required(),
       email: Yup.string().required(),
@@ -92,7 +94,9 @@ export default {
       estado: Yup.string().required(),
       cargo: Yup.string().required(),
       salario: Yup.number().required(),
-      carteira_trabalho: Yup.number().required()
+      carteira_trabalho: Yup.number().required(),
+      ponto_de_referencia: Yup.string().required(),
+      telefone_contato: Yup.number().required()
     });
     await schema.validate(data, {
       abortEarly: false

@@ -1,9 +1,13 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+// import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export default class Produto {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
+
+  // @PrimaryColumn()
+  // id: number;
 
   @Column()
   nome: string;

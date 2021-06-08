@@ -3,7 +3,7 @@ import {MigrationInterface, QueryRunner, Table} from "typeorm";
 export class createFuncionario1623114684104 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(new Table({
-      name: 'funcionarios',
+      name: 'funcionario',
         columns: [
           {
             name: 'id',
@@ -87,10 +87,18 @@ export class createFuncionario1623114684104 implements MigrationInterface {
           },
           {
             name: 'salario',
-            type: 'defimal'
+            type: 'decimal'
           },
           {
             name: 'carteira_trabalho',
+            type: 'integer'
+          },
+          {
+            name: 'ponto_de_referencia',
+            type: 'varchar'
+          },
+          {
+            name: 'telefone_contato',
             type: 'integer'
           },
           {
@@ -102,6 +110,6 @@ export class createFuncionario1623114684104 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('funcionarios');
+    await queryRunner.dropTable('funcionario');
   }
 }

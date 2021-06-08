@@ -1,13 +1,13 @@
-import {Entity, PrimaryColumn, Column} from "typeorm";
-// import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+// import {Entity, PrimaryColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @Entity()
 export default class Pessoa {
-  // @PrimaryGeneratedColumn()
-  // id: number;
-
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
+
+  // @PrimaryColumn()
+  // id: number;
 
   @Column()
   nome: string;

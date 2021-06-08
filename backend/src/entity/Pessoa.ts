@@ -19,10 +19,10 @@ export default class Pessoa {
   senha: string;
 
   @Column()
-  cpf: string;
+  cpf: number;
 
   @Column()
-  rg: string;
+  rg: number;
 
   @Column()
   sexo: string;
@@ -31,10 +31,10 @@ export default class Pessoa {
   data_nascimento: Date;
 
   @Column()
-  telefone: string;
+  telefone: number;
 
   @Column()
-  celular: string;
+  celular: number;
   
   @Column()
   endereco: string;
@@ -43,13 +43,13 @@ export default class Pessoa {
   bairro: string;
   
   @Column()
-  numero: string;
+  numero: number;
   
   @Column()
   complemento: string;
   
   @Column()
-  cep: string;
+  cep: number;
 
   @Column()
   pais: string;
@@ -59,6 +59,12 @@ export default class Pessoa {
   
   @Column()
   estado: string;
+
+  @Column()
+  ponto_de_referencia: string;
+
+  @Column()
+  telefone_contato: number;
 
   @Column()
   data_cadastro: Date;

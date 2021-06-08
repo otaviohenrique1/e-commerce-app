@@ -12,10 +12,16 @@ export default class Produto {
   quantidade: number;
 
   @Column()
+  unidade: string;
+
+  @Column()
   descricao: string;
 
   @Column()
   preco: number;
+
+  @Column()
+  fabricante: string;
 
   @Column()
   id_funcionario: number;

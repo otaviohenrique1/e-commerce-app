@@ -2,7 +2,7 @@ import {Entity, Column} from "typeorm";
 import Pessoa from "./Pessoa";
 
 @Entity()
-export default class PessoaJuridica extends Pessoa {
+export default class Usuario extends Pessoa {
   @Column()
   razao_social: string;
 
@@ -13,8 +13,8 @@ export default class PessoaJuridica extends Pessoa {
   isento_inscricao_estadual: boolean;
   
   @Column()
-  numero_inscricao_estadual: string;
+  numero_inscricao_estadual: number;
 
   @Column()
-  contribuinte: string;
+  contribuinte: boolean;
 }

@@ -12,7 +12,3 @@ export default class Funcionario extends Pessoa {
   @Column()
   carteira_trabalho: number;
 }
-
-let funcionario = new Funcionario();
-
-funcionario.cpf;

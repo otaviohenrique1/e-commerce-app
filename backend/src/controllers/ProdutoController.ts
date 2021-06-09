@@ -28,7 +28,7 @@ export default {
       descricao: Yup.string().required(),
       fabricante: Yup.string().required(),
       id_funcionario: Yup.number().required(),
-      data_cadastro: Yup.string().required()
+      data_cadastro: Yup.date().required()
     });
     await schema.validate(data, {
       abortEarly: false

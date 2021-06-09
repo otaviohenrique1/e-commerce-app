@@ -27,11 +27,11 @@ export class createFuncionario1623114684104 implements MigrationInterface {
           },
           {
             name: 'cpf',
-            type: 'integer'
+            type: 'varchar'
           },
           {
             name: 'rg',
-            type: 'integer'
+            type: 'varchar'
           },
           {
             name: 'sexo',
@@ -43,11 +43,11 @@ export class createFuncionario1623114684104 implements MigrationInterface {
           },
           {
             name: 'telefone',
-            type: 'integer'
+            type: 'varchar'
           },
           {
             name: 'celular',
-            type: 'integer'
+            type: 'varchar'
           },
           {
             name: 'endereco',
@@ -59,7 +59,7 @@ export class createFuncionario1623114684104 implements MigrationInterface {
           },
           {
             name: 'numero',
-            type: 'integer'
+            type: 'varchar'
           },
           {
             name: 'complemento',
@@ -67,7 +67,7 @@ export class createFuncionario1623114684104 implements MigrationInterface {
           },
           {
             name: 'cep',
-            type: 'integer'
+            type: 'varchar'
           },
           {
             name: 'pais',
@@ -87,11 +87,13 @@ export class createFuncionario1623114684104 implements MigrationInterface {
           },
           {
             name: 'salario',
-            type: 'decimal'
+            type: 'decimal',
+            precision: 10,
+            scale: 2
           },
           {
             name: 'carteira_trabalho',
-            type: 'integer'
+            type: 'varchar'
           },
           {
             name: 'ponto_de_referencia',
@@ -99,7 +101,7 @@ export class createFuncionario1623114684104 implements MigrationInterface {
           },
           {
             name: 'telefone_contato',
-            type: 'integer'
+            type: 'varchar'
           },
           {
             name: 'data_cadastro',

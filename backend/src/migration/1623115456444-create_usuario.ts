@@ -27,11 +27,11 @@ export class createUsuario1623115456444 implements MigrationInterface {
             },
             {
               name: 'cpf',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'rg',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'sexo',
@@ -43,11 +43,11 @@ export class createUsuario1623115456444 implements MigrationInterface {
             },
             {
               name: 'telefone',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'celular',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'endereco',
@@ -59,7 +59,7 @@ export class createUsuario1623115456444 implements MigrationInterface {
             },
             {
               name: 'numero',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'complemento',
@@ -67,7 +67,7 @@ export class createUsuario1623115456444 implements MigrationInterface {
             },
             {
               name: 'cep',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'pais',
@@ -87,7 +87,7 @@ export class createUsuario1623115456444 implements MigrationInterface {
             },
             {
               name: 'telefone_contato',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'razao_social',
@@ -95,7 +95,7 @@ export class createUsuario1623115456444 implements MigrationInterface {
             },
             {
               name: 'cnpj',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'isento_inscricao_estadual',
@@ -103,7 +103,7 @@ export class createUsuario1623115456444 implements MigrationInterface {
             },
             {
               name: 'numero_inscricao_estadual',
-              type: 'integer'
+              type: 'varchar'
             },
             {
               name: 'contribuinte',

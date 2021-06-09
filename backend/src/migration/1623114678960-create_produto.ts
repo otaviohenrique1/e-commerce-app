@@ -19,7 +19,9 @@ export class createProduto1623114678960 implements MigrationInterface {
           },
           {
             name: 'preco',
-            type: 'double'
+            type: 'decimal',
+            precision: 10,
+            scale: 2
           },
           {
             name: 'descricao',

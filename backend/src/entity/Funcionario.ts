@@ -60,7 +60,7 @@ export default class Funcionario {
   ponto_de_referencia: string;
 
   @Column()
-  telefone_contato: number;
+  telefone_contato: string;
 
   @Column()
   cargo: string;

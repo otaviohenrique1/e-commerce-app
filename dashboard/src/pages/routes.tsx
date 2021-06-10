@@ -17,12 +17,12 @@ export default function Routes() {
           <Route component={Login} path="/" exact/>
           <PageContainer>
             <Route component={Home} path="/home" exact/>
-            <Route component={ProdutoLista} path="/produtos" exact />
-            <Route component={ProdutoDados} path="/produtos/:id" exact/>
             <Route component={ProdutoCadastro} path="/produtos/cadastro" exact/>
-            <Route component={FuncionarioLista} path="/funcionarios" exact/>
-            <Route component={FuncionarioDados} path="/funcionarios/:id" exact/>
             <Route component={FuncionarioCadastro} path="/funcionarios/cadastro" exact/>
+            <Route component={ProdutoLista} path="/produtos" exact />
+            <Route component={FuncionarioLista} path="/funcionarios" exact/>
+            <Route component={ProdutoDados} path="/produtos/:id" exact/>
+            <Route component={FuncionarioDados} path="/funcionarios/:id" exact/>
           </PageContainer>
         </Switch>
       </BrowserRouter>

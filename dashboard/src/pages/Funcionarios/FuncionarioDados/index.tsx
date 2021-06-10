@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { Row, ListGroup, ListGroupItem, Col, Button } from 'reactstrap';
 // import apiTeste4 from '../../../services/api_teste/api_teste_4';
-import apiServer from "../../../services/api_server";
+// import apiServer from "../../../services/api_server";
 
 interface UsuarioDadosProps {
   id: string;
@@ -11,9 +11,9 @@ interface UsuarioDadosProps {
   senha: string;
 }
 
-interface QuadrinhosDadosParamsProps {
-  id: string;
-}
+// interface QuadrinhosDadosParamsProps {
+//   id: string;
+// }
 
 const dadosIniciais = {
   id: '',
@@ -25,20 +25,29 @@ const dadosIniciais = {
 export default function UsuarioDados() {
   const [usuarioDados, setUsuarioDados] = useState<UsuarioDadosProps>(dadosIniciais);
 
-  const { id } = useParams<QuadrinhosDadosParamsProps>();
-
   useEffect(() => {
-    apiServer.get(`usuarios/${id}`)
-    .then((response) => {
-      setUsuarioDados({
-        id: response.data.id,
-        nome: response.data.nome,
-        email: response.data.email,
-        senha: response.data.senha,
-      });
-    })
-    .catch((error) => console.log(`Erro => ${error}`));
-  }, [id]);
+    setUsuarioDados({
+      id: "id",
+      nome: "nome",
+      email: "email@email.com",
+      senha: "senha",
+    });
+  }, []);
+
+  // const { id } = useParams<QuadrinhosDadosParamsProps>();
+
+  // useEffect(() => {
+  //   apiServer.get(`usuarios/${id}`)
+  //   .then((response) => {
+  //     setUsuarioDados({
+  //       id: response.data.id,
+  //       nome: response.data.nome,
+  //       email: response.data.email,
+  //       senha: response.data.senha,
+  //     });
+  //   })
+  //   .catch((error) => console.log(`Erro => ${error}`));
+  // }, [id]);
 
   // useEffect(() => {
   //   apiTeste4.find((item) => {

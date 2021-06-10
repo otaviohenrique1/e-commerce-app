@@ -38,25 +38,3 @@ export default function CampoSelect({ htmlFor, label, nameInput, idInput, erro, 
     </FormGroup>
   );
 }
-
-/*
-<FormGroup>
-  <InputGroup>
-    <InputGroupAddon addonType="prepend">
-      <InputGroupText>
-        <Label htmlFor="sexo">Sexo</Label>
-      </InputGroupText>
-    </InputGroupAddon>
-    <Field
-      className="form-control"
-      type="select"
-      name="sexo"
-      id="sexo"
-    >
-      <option>Masculino</option>
-      <option>Feminino</option>
-    </Field>
-  </InputGroup>
-  <span>{(errors.sexo && touched.sexo) ? (<Alert color="danger">{errors.sexo}</Alert>) : null}</span>
-</FormGroup>
-*/

@@ -13,9 +13,10 @@ interface CampoProps {
   idInput?: string;
   erro?: any;
   valueInput?: any;
+  renderMask?: any;
 }
 
-export default function Campo({ htmlFor, label, placeholderInput, typeInput, nameInput, idInput, erro, valueInput }: CampoProps) {
+export default function Campo({ htmlFor, label, placeholderInput, typeInput, nameInput, idInput, erro, valueInput, renderMask }: CampoProps) {
   return (
     <FormGroup>
       <InputGroup>
@@ -31,6 +32,7 @@ export default function Campo({ htmlFor, label, placeholderInput, typeInput, nam
           id={idInput}
           placeholder={placeholderInput}
           value={valueInput}
+          render={renderMask}
         />
       </InputGroup>
       <span>{erro}</span>

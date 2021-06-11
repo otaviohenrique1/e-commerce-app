@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button, ButtonGroup, Alert, Nav, NavLink, TabContent, TabPane, NavItem } from "reactstrap";
 import Campo from "../../../components/Campo";
 import { Link } from "react-router-dom";
-// import apiServer from "../../../services/api_server";
+import apiServer from "../../../services/api_server";
 import '../../../styles/scss/usuario/style.scss';
-// import { useHistory } from "react-router-dom";
-import { Formik, Form} from "formik";
+import { useHistory } from "react-router-dom";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { FormTypesPessoaFisica, FormTypesPessoaJuridica } from "./FormTypes";
 // import { FormTypes, FormTypesPessoaFisica, FormTypesPessoaJuridica } from "./FormTypes";
-// import md5 from "md5";
+import md5 from "md5";
 import classnames from 'classnames';
 import CampoSelect from "../../../components/CampoSelect";
 import { estado_lista, sexo_lista } from "../../../utils/listas";
+import InputMask from "react-input-mask";
 
 export default function CadastroUsuarios() {
-  // const history = useHistory();
+  const history = useHistory();
   const [activeTab, setActiveTab] = useState<string>('1');
 
   const toggle = (tab: string) => {
@@ -126,37 +127,74 @@ export default function CadastroUsuarios() {
 
   async function handleSubmitFormPessoaFisica(values: FormTypesPessoaFisica) {
     alert('Cadastro realizado com sucesso!');
-    console.log(values);
-    // await apiServer.post('usuarios', {
-    //   'nome': (values.nome).toString(),
-    //   'email': (values.email).toString(),
-    //   'senha': (md5(values.senha).toString())
-    // })
-    // .then(() => {
-    //   alert('Cadastro realizado com sucesso!');
-    //   history.push('/');
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+    await apiServer.post('usuarios', {
+      'nome': (values.nome).toString(),
+      'cpf': (values.cpf).toString(),
+      'rg': (values.rg).toString(),
+      'sexo': (values.sexo).toString(),
+      'data_nascimento': (values.data_nascimento).toString(),
+      'email': (values.email).toString(),
+      'senha': (md5(values.senha).toString()),
+      'telefone': (values.telefone).toString(),
+      'celular': (values.celular).toString(),
+      'endereco': (values.endereco).toString(),
+      'bairro': (values.bairro).toString(),
+      'numero': (values.numero).toString(),
+      'complemento': (values.complemento).toString(),
+      'cep': (values.cep).toString(),
+      'pais': (values.pais).toString(),
+      'cidade': (values.cidade).toString(),
+      'estado': (values.estado).toString(),
+      'ponto_de_referencia': (values.ponto_de_referencia).toString(),
+      'telefone_contato': (values.telefone).toString(),
+      'data_cadastro': (`${dia}/${mes}/${ano}`).toString(),
+      'razao_social': '-',
+      'cnpj': '-',
+      'isento_inscricao_estadual': false,
+      'numero_inscricao_estadual': '-',
+      'contribuinte': false,
+    })
+    .then(() => {
+      alert('Cadastro realizado com sucesso!');
+      history.push('/');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     /* Colocar o data_cadastro */
   }
 
   async function handleSubmitFormPessoaJuridica(values: FormTypesPessoaJuridica) {
     alert('Cadastro realizado com sucesso!');
-    console.log(values);
-    // await apiServer.post('usuarios', {
-    //   'nome': (values.nome).toString(),
-    //   'email': (values.email).toString(),
-    //   'senha': (md5(values.senha).toString())
-    // })
-    // .then(() => {
-    //   alert('Cadastro realizado com sucesso!');
-    //   history.push('/');
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+    await apiServer.post('usuarios', {
+      'razao_social': (values.razao_social).toString(),
+      'cnpj': (values.cnpj).toString(),
+      'email': (values.email).toString(),
+      'senha': (md5(values.senha).toString()),
+      'telefone': (values.telefone).toString(),
+      'celular': (values.celular).toString(),
+      'endereco': (values.endereco).toString(),
+      'bairro': (values.bairro).toString(),
+      'numero': (values.numero).toString(),
+      'complemento': (values.complemento).toString(),
+      'cep': (values.cep).toString(),
+      'pais': (values.pais).toString(),
+      'cidade': (values.cidade).toString(),
+      'estado': (values.estado).toString(),
+      'ponto_de_referencia': (values.ponto_de_referencia).toString(),
+      'telefone_contato': (values.telefone).toString(),
+      'data_cadastro': (`${dia}/${mes}/${ano}`).toString(),
+      'isento_inscricao_estadual': (values.isento_inscricao_estadual).toString(),
+      'numero_inscricao_estadual': (values.numero_inscricao_estadual).toString(),
+      'contribuinte': (values.complemento).toString(),
+    })
+    .then(() => {
+      alert('Cadastro realizado com sucesso!');
+      history.push('/');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     /* Colocar o data_cadastro */
   }
 
@@ -168,13 +206,13 @@ export default function CadastroUsuarios() {
         </Col>
         <Col md={12}>
           <Nav tabs>
-            <NavItem>
+            <NavItem className="aba-titulo">
               <NavLink
                 className={classnames({ active: activeTab === '1' })}
                 onClick={() => { toggle('1'); }}
               >Pessoa Fisica</NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className="aba-titulo">
               <NavLink
                 className={classnames({ active: activeTab === '2' })}
                 onClick={() => { toggle('2'); }}
@@ -189,6 +227,7 @@ export default function CadastroUsuarios() {
                 validationSchema={validationSchemaPessoaFisica}
                 handleSubmitForm={(values: FormTypesPessoaFisica) => handleSubmitFormPessoaFisica(values)}
                 tipoFormulario={"1"}
+                className="aba-cadastro"
               />
             </TabPane>
             <TabPane tabId="2">
@@ -198,6 +237,7 @@ export default function CadastroUsuarios() {
                 validationSchema={validationSchemaPessoaJuridica}
                 handleSubmitForm={(values: FormTypesPessoaJuridica) => handleSubmitFormPessoaJuridica(values)}
                 tipoFormulario={"2"}
+                className="aba-cadastro"
               />
             </TabPane>
           </TabContent>
@@ -212,9 +252,10 @@ interface FormularioProps {
   validationSchema: any;
   handleSubmitForm: any;
   tipoFormulario?: string;
+  className?: string;
 }
 
-function Formulario({initialValues, validationSchema, handleSubmitForm, tipoFormulario}: FormularioProps) {
+function Formulario({initialValues, validationSchema, handleSubmitForm, tipoFormulario, className}: FormularioProps) {
   return (
     <Formik
       initialValues={initialValues}
@@ -222,7 +263,9 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
       onSubmit={handleSubmitForm}
     >
       {({errors, touched}) => (
-        <Form>
+        <Form
+          className={className}
+        >
           {(tipoFormulario === "1") && (
             <>
               <Campo
@@ -238,21 +281,29 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
               <Campo
                 className="mt-2"
                 htmlFor="cpf"
-                label="cpf"
+                label="CPF"
                 typeInput="number"
                 nameInput="cpf"
                 idInput="cpf"
-                placeholderInput="Digite o cpf"
+                renderMask={() => <InputMask
+                  className="form-control"
+                  mask="999.999.999-99"
+                  placeholder="Digite o CPF"
+                />}
                 erro={(errors.cpf && touched.cpf) ? (<Alert color="danger">{errors.cpf}</Alert>) : null}
               />
               <Campo
                 className="mt-2"
                 htmlFor="rg"
-                label="rg"
+                label="RG"
                 typeInput="number"
                 nameInput="rg"
                 idInput="rg"
-                placeholderInput="Digite o rg"
+                renderMask={() => <InputMask
+                  className="form-control"
+                  mask="99.999.999-9"
+                  placeholder="Digite o RG"
+                />}
                 erro={(errors.rg && touched.rg) ? (<Alert color="danger">{errors.rg}</Alert>) : null}
               />
               <CampoSelect
@@ -271,7 +322,11 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
                 typeInput="date"
                 nameInput="data_nascimento"
                 idInput="data_nascimento"
-                placeholderInput="Digite a data de nascimento"
+                renderMask={() => <InputMask
+                  className="form-control"
+                  mask="99/99/9999"
+                  placeholder="Digite a data de nascimento"
+                />}
                 erro={(errors.data_nascimento && touched.data_nascimento) ? (<Alert color="danger">{errors.data_nascimento}</Alert>) : null}
               />
             </>
@@ -295,7 +350,11 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
                 typeInput="number"
                 nameInput="cnpj"
                 idInput="cnpj"
-                placeholderInput="Digite o CNPJ do usuario"
+                renderMask={() => <InputMask
+                  className="form-control"
+                  mask="99.999.999/9999-9"
+                  placeholder="Digite o CNPJ do usuario"
+                />}
                 erro={(errors.cnpj && touched.cnpj) ? (<Alert color="danger">{errors.cnpj}</Alert>) : null}
               />
             </>
@@ -327,7 +386,11 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
             typeInput="number"
             nameInput="telefone"
             idInput="telefone"
-            placeholderInput="Digite o telefone"
+            renderMask={() => <InputMask
+              className="form-control"
+              mask="(99)9999.9999"
+              placeholder="Digite o telefone"
+            />}
             erro={(errors.telefone && touched.telefone) ? (<Alert color="danger">{errors.telefone}</Alert>) : null}
           />
           <Campo
@@ -337,7 +400,11 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
             typeInput="number"
             nameInput="celular"
             idInput="celular"
-            placeholderInput="Digite a data de nascimento"
+            renderMask={() => <InputMask
+              className="form-control"
+              mask="(99)99999.9999"
+              placeholder="Digite o celular"
+            />}
             erro={(errors.celular && touched.celular) ? (<Alert color="danger">{errors.celular}</Alert>) : null}
           />
           <Campo
@@ -347,7 +414,7 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
             typeInput="text"
             nameInput="endereco"
             idInput="endereco"
-            placeholderInput="Digite o endereco"
+            placeholderInput="Digite o endereço"
             erro={(errors.endereco && touched.endereco) ? (<Alert color="danger">{errors.endereco}</Alert>) : null}
           />
           <Campo
@@ -387,7 +454,11 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
             typeInput="number"
             nameInput="cep"
             idInput="cep"
-            placeholderInput="Digite o cep"
+            renderMask={() => <InputMask
+              className="form-control"
+              mask="99999-999"
+              placeholder="Digite o CEP"
+            />}
             erro={(errors.cep && touched.cep) ? (<Alert color="danger">{errors.cep}</Alert>) : null}
           />
           <Campo
@@ -426,7 +497,11 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
             typeInput="number"
             nameInput="telefone_contato"
             idInput="telefone_contato"
-            placeholderInput="Digite o telefone de contato"
+            renderMask={() => <InputMask
+              className="form-control"
+              mask="(99)99999.9999"
+              placeholder="Digite o telefone de contato"
+            />}
             erro={(errors.telefone_contato && touched.telefone_contato) ? (<Alert color="danger">{errors.telefone_contato}</Alert>) : null}
           />
           {(tipoFormulario === "2") && (
@@ -434,7 +509,7 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
               <Campo
                 className="mt-2"
                 htmlFor="isento_inscricao_estadual"
-                label="isento_inscricao_estadual"
+                label="Isento - inscrição estadual"
                 typeInput="checkbox"
                 nameInput="isento_inscricao_estadual"
                 idInput="isento_inscricao_estadual"
@@ -443,11 +518,11 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
               <Campo
                 className="mt-2"
                 htmlFor="numero_inscricao_estadual"
-                label="numero_inscricao_estadual"
+                label="Numero - inscrição estadual"
                 typeInput="number"
                 nameInput="numero_inscricao_estadual"
                 idInput="numero_inscricao_estadual"
-                placeholderInput="Digite a numero_inscricao_estadual do usuario"
+                placeholderInput="Digite a numero inscrição estadual"
                 erro={(errors.numero_inscricao_estadual && touched.numero_inscricao_estadual) ? (<Alert color="danger">{errors.numero_inscricao_estadual}</Alert>) : null}
               />
               <Campo

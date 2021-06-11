@@ -18,8 +18,6 @@ interface FormTypesPessoa {
 
 export interface FormTypesPessoaFisica extends FormTypesPessoa {
   nome: string;
-  email: string;
-  senha: string;
   cpf: string;
   rg: string;
   sexo: string;

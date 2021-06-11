@@ -16,8 +16,6 @@ import { estado_lista, sexo_lista } from "../../../utils/listas";
 
 export default function CadastroUsuarios() {
   // const history = useHistory();
-  // const [tipoPessoa, setTipoPessoa] = useState<String>('');
-  // const [mudaFormulario, setMudaFormulario] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>('1');
 
   const toggle = (tab: string) => {
@@ -28,34 +26,6 @@ export default function CadastroUsuarios() {
   let mes = new Date(`${new Date().getMonth() + 1}`);
   let ano = new Date(`${new Date().getFullYear()}`);
   let dataInicial = new Date(`${dia}/${mes}/${ano}`);
-  
-  /*const initialValues = {
-    nome: '',
-    email: '',
-    senha: '',
-    cpf: '',
-    rg: '',
-    sexo: '',
-    data_nascimento: dataInicial,
-    telefone: '',
-    celular: '',
-    endereco: '',
-    bairro: '',
-    numero: '',
-    complemento: '',
-    cep: '',
-    pais: '',
-    cidade: '',
-    estado: '',
-    ponto_de_referencia: '',
-    telefone_contato: '',
-    razao_social: '',
-    cnpj: '',
-    isento_inscricao_estadual: false,
-    numero_inscricao_estadual: '',
-    contribuinte: false,
-    data_cadastro: dataInicial,
-  };*/
 
   const initialValuesPessoaFisica = {
     nome: '',
@@ -102,34 +72,6 @@ export default function CadastroUsuarios() {
     contribuinte: false,
     data_cadastro: dataInicial,
   };
-
-  /*const validationSchema = Yup.object().shape({
-    nome: Yup.string().required('O campo nome é obrigatorio'),
-    email: Yup.string().required('O campo email é obrigatorio'),
-    senha: Yup.string().required('O campo senha é obrigatorio'),
-    cpf: Yup.string().required('O campo cpf é obrigatorio'),
-    rg: Yup.string().required('O campo rg é obrigatorio'),
-    sexo: Yup.string().required('O campo sexo é obrigatorio'),
-    data_nascimento: Yup.date().required('O campo data de nascimento é obrigatorio'),
-    telefone: Yup.string().required('O campo telefone é obrigatorio'),
-    celular: Yup.string().required('O campo celular é obrigatorio'),
-    endereco: Yup.string().required('O campo endereco é obrigatorio'),
-    bairro: Yup.string().required('O campo bairro é obrigatorio'),
-    numero: Yup.string().required('O campo numero é obrigatorio'),
-    complemento: Yup.string().required('O campo complemento é obrigatorio'),
-    cep: Yup.string().required('O campo cep é obrigatorio'),
-    pais: Yup.string().required('O campo pais é obrigatorio'),
-    cidade: Yup.string().required('O campo cidade é obrigatorio'),
-    estado: Yup.string().required('O campo estado é obrigatorio'),
-    ponto_de_referencia: Yup.string().required('O campo ponto de referencia é obrigatorio'),
-    telefone_contato: Yup.string().required('O campo telefone de contato é obrigatorio'),
-    razao_social: Yup.string().required('O campo razao social é obrigatorio'),
-    cnpj: Yup.string().required('O campo cnpj é obrigatorio'),
-    isento_inscricao_estadual: Yup.boolean().required('O campo isento_inscricao_estadual é obrigatorio'),
-    numero_inscricao_estadual: Yup.string().required('O campo numero_inscricao_estadual é obrigatorio'),
-    contribuinte: Yup.boolean().required('O campo contribuinte é obrigatorio'),
-    data_cadastro: Yup.date().required('O campo data_cadastro é obrigatorio'),
-  });*/
 
   const validationSchemaPessoaFisica = Yup.object().shape({
     nome: Yup.string().required('O campo nome é obrigatorio'),
@@ -218,24 +160,6 @@ export default function CadastroUsuarios() {
     /* Colocar o data_cadastro */
   }
 
-  /* async function handleSubmitForm(values: FormTypes) {
-    alert('Cadastro realizado com sucesso!');
-    console.log(values);
-    // await apiServer.post('usuarios', {
-    //   'nome': (values.nome).toString(),
-    //   'email': (values.email).toString(),
-    //   'senha': (md5(values.senha).toString())
-    // })
-    // .then(() => {
-    //   alert('Cadastro realizado com sucesso!');
-    //   history.push('/');
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
-    // Colocar o data_cadastro
-  }*/
-
   return (
     <Container>
       <Row>
@@ -296,7 +220,6 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmitForm}
-      // onSubmit={(values) => handleSubmitForm(values)}
     >
       {({errors, touched}) => (
         <Form>
@@ -556,32 +479,3 @@ function Formulario({initialValues, validationSchema, handleSubmitForm, tipoForm
     </Formik>
   );
 }
-
-
-/*
-nome
-email
-senha
-cpf
-rg
-sexo
-data_nascimento
-telefone
-celular
-endereco
-bairro
-numero
-complemento
-cep
-pais
-cidade
-estado
-ponto_de_referencia
-telefone_contato
-razao_social
-cnpj
-isento_inscricao_estadual
-numero_inscricao_estadual
-contribuinte
-data_cadastro
-*/

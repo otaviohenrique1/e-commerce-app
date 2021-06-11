@@ -1,58 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, ListGroup, ListGroupItem, Col, Button } from 'reactstrap';
-// import apiTeste4 from '../../../services/api_teste/api_teste_4';
 import apiServer from "../../../services/api_server";
 
 interface UsuarioDadosProps {
   id: string;
   nome: string;
-  email: string;
-  senha: string;
+  quantidade: number;
+  unidade: string;
+  descricao: string;
+  preco: number;
+  fabricante: string;
 }
 
-interface QuadrinhosDadosParamsProps {
+interface ProdutosDadosParamsProps {
   id: string;
 }
 
 const dadosIniciais = {
   id: '',
   nome: '',
-  email: '',
-  senha: ''
+  quantidade: 0,
+  unidade: '',
+  descricao: '',
+  preco: 0,
+  fabricante: ''
 };
 
-export default function UsuarioDados() {
+export default function ProdutoDados() {
   const [usuarioDados, setUsuarioDados] = useState<UsuarioDadosProps>(dadosIniciais);
 
-  const { id } = useParams<QuadrinhosDadosParamsProps>();
+  const { id } = useParams<ProdutosDadosParamsProps>();
 
   useEffect(() => {
-    apiServer.get(`usuarios/${id}`)
+    apiServer.get(`produtos/${id}`)
     .then((response) => {
       setUsuarioDados({
         id: response.data.id,
         nome: response.data.nome,
-        email: response.data.email,
-        senha: response.data.senha,
+        quantidade: response.data.quantidade,
+        unidade: response.data.unidade,
+        descricao: response.data.descricao,
+        preco: response.data.preco,
+        fabricante: response.data.fabricante
       });
     })
     .catch((error) => console.log(`Erro => ${error}`));
   }, [id]);
-
-  // useEffect(() => {
-  //   apiTeste4.find((item) => {
-  //     if (item.id === id) {
-  //       setUsuarioDados({
-  //         id: item.id,
-  //         name: item.name,
-  //         email: item.email,
-  //         senha: item.senha
-  //       })
-  //     }
-  //     return '';
-  //   });
-  // }, [id]);
 
   return (
     <Row>
@@ -70,24 +64,24 @@ export default function UsuarioDados() {
             {usuarioDados.nome}
           </ListGroupItem>
           <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Email: </span>
-            {usuarioDados.email}
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Quantidade: </span>
+            {`${usuarioDados.quantidade} ${usuarioDados.unidade}`}
           </ListGroupItem>
           <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Senha: </span>
-            <input
-              type="password"
-              readOnly
-              value={usuarioDados.senha}
-              style={{
-                border: 0,
-              }}
-            />
-            {/* {usuarioDados.senha} */}
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Descricao: </span><br />
+            {usuarioDados.descricao}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Preco: </span>
+            {usuarioDados.preco}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Fabricante: </span>
+            {usuarioDados.fabricante}
           </ListGroupItem>
           <ListGroupItem>
             <Col style={{ textAlign: 'right' }}>
-              <Button type="button" color="primary">Editar</Button>
+              <Button type="button" color="primary">Comprar</Button>
             </Col>
           </ListGroupItem>
         </ListGroup>

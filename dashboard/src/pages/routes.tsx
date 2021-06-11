@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Home from "./Home";
 import Login from "./Login";
+import PageContainer from '../components/PageContainer';
+import Home from "./Home";
 import ProdutoLista from "./Produtos/ProdutoLista";
 import ProdutoDados from "./Produtos/ProdutoDados";
 import ProdutoCadastro from "./Produtos/ProdutoCadastro";
 import FuncionarioLista from "./Funcionarios/FuncionarioLista";
 import FuncionarioDados from "./Funcionarios/FuncionarioDados";
 import FuncionarioCadastro from "./Funcionarios/FuncionarioCadastro";
-import PageContainer from '../components/PageContainer';
+import UsuarioLista from "./Usuarios/UsuarioLista";
 
 export default function Routes() {
   return (
@@ -23,6 +24,7 @@ export default function Routes() {
             <Route component={FuncionarioLista} path="/funcionarios" exact/>
             <Route component={ProdutoDados} path="/produtos/:id" exact/>
             <Route component={FuncionarioDados} path="/funcionarios/:id" exact/>
+            <Route component={UsuarioLista} path="/usuarios" exact/>
           </PageContainer>
         </Switch>
       </BrowserRouter>

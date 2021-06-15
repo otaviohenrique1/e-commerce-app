@@ -1,27 +1,21 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export default class Promocao {
+export default class Favorito {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  nome: string;
+  id_produto: number;
 
   @Column()
-  tema: string;
+  id_usuario: number;
 
   @Column()
-  produtos: string;
-
+  favoritado: boolean;
+  
   @Column()
-  inicio: Date;
-
-  @Column()
-  termino: Date;
-
-  @Column()
-  id_funcionario: number;
+  category: string;
 
   @Column()
   data_cadastro: Date;

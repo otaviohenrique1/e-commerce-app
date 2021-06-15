@@ -5,6 +5,28 @@ import Funcionario from "../entity/Funcionario";
 import FuncionarioView from "../views/FuncionarioView";
 
 export default {
+  async login(request: Request, response: Response) {
+    const { email, senha } = request.body;
+    let existingUser;
+    const funcionarioRepository = getRepository(Funcionario);
+    try {
+      existingUser = await funcionarioRepository.findOne({ email: email });
+    } catch (error) {
+      const mensagemErro = "Login falhou, tente novamente mais tarde";
+      return response.status(500).json({ message: mensagemErro });
+    }
+    if (!existingUser || existingUser.senha !== senha) {
+      const mensagemErro = "Dados invalidos";
+      console.log(`${email}, ${senha}`);
+      return response.status(401).json({ message: mensagemErro });
+    }
+    let dataUser = {
+      id: existingUser.id,
+      nome: existingUser.nome,
+      email: existingUser.email,
+    };
+    return response.status(200).json({ message: "Logado com sucesso!", dataUser });
+  },
   async index(request: Request, response: Response) {
     const funcionarioRepository = getRepository(Funcionario);
     const funcionario = await funcionarioRepository.find();

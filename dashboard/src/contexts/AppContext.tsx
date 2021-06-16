@@ -1,20 +1,20 @@
 import React, { ReactNode, useState, useContext, createContext } from 'react';
 
-type Usuario = {
+type Funcionario = {
   id: string;
   nome: string;
   email: string;
 }
 
-const dadosIniciaisUsuario = {
+const dadosIniciaisFuncionario = {
   id: '',
   nome: '',
   email: ''
 };
 
 type AppContextData =  {
-  usuarioData: Usuario;
-  setUsuarioData: React.Dispatch<React.SetStateAction<Usuario>>;
+  usuarioData: Funcionario;
+  setUsuarioData: React.Dispatch<React.SetStateAction<Funcionario>>;
 }
 
 export const AppContext = createContext({} as AppContextData);
@@ -24,13 +24,13 @@ type AppContextProviderProps = {
 }
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
-  const [usuarioData, setUsuarioData] = useState<Usuario>(dadosIniciaisUsuario);
+  const [funcionarioData, setFuncionarioData] = useState<Funcionario>(dadosIniciaisFuncionario);
 
   return (
     <AppContext.Provider
       value={{
-        usuarioData,
-        setUsuarioData
+        usuarioData: funcionarioData,
+        setUsuarioData: setFuncionarioData
       }}
     >
       {children}

@@ -5,10 +5,10 @@ import { useHistory } from "react-router-dom";
 // import { Link, useHistory } from "react-router-dom";
 import '../../styles/scss/login/style.scss';
 import { BsChatSquareDots } from "react-icons/bs";
-// import apiServer from "../../services/api_server";
+import apiServer from "../../services/api_server";
 import { Formik, Form} from "formik";
 import * as Yup from "yup";
-// import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/AppContext";
 // import md5 from "md5";
 
 interface FormTypes {
@@ -17,7 +17,7 @@ interface FormTypes {
 }
 
 export default function Login() {
-  // const { setUsuarioData } = useAppContext();
+  const { setUsuarioData } = useAppContext();
 
   const initialValues = {
     email: '',
@@ -41,36 +41,33 @@ export default function Login() {
 
   async function handleSubmitForm(values: FormTypes) {
     history.push('/home');
-    // return apiServer.post('usuarios/login', {
-    //   email: values.email,
-    //   senha: values.senha,
-    // }, {
-    //   auth: {
-    //     username: values.email,
-    //     password: values.senha,
-    //     // password: (md5(values.senha)).toString()
-    //   }
-    // })
-    // .then((data) => {
-    //   // console.log(data.data.dataUser);
-    //   // console.log(values.email);
-    //   // console.log(values.senha);
-    //   // console.log(md5(values.senha));
-    //   setUsuarioData({
-    //     id: data.data.dataUser.id,
-    //     nome: data.data.dataUser.nome,
-    //     email: data.data.dataUser.email,
-    //   });
-    //   history.push('/home');
-    // })
-    // .catch((error) => {
-    //   alert('Usuario ou senha invalidos');
-    //   // console.log(error);
-    //   // console.log(values.email);
-    //   // console.log(values.senha);
-    //   // console.log(md5(values.senha));
-    //   // return;
-    // });
+    return apiServer.post('usuarios/login', {
+      email: values.email,
+      senha: values.senha,
+    }, {
+      auth: {
+        username: values.email,
+        password: values.senha,
+        // password: (md5(values.senha)).toString()
+      }
+    })
+    .then((data) => {
+      setUsuarioData({
+        id: data.data.dataUser.id,
+        nome: data.data.dataUser.nome,
+        email: data.data.dataUser.email,
+      });
+      apiServer.post('logs', {
+        'id_funcionario': data.data.dataUser.id,
+        'tempo_acesso': new Date(`${new Date().getSeconds()} : ${new Date().getMinutes()} - ${new Date().getHours()}`),
+        'data_acesso': new Date(`${new Date().getFullYear()} - ${new Date().getMonth() + 1} - ${new Date().getDate()}`)
+      })
+      history.push('/home');
+    })
+    .catch((error) => {
+      alert('Usuario ou senha invalidos');
+      // return;
+    });
   }
 
   return (

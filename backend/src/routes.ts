@@ -6,6 +6,7 @@ import FavoritoController from "./controllers/FavoritoController";
 import CompraController from "./controllers/CompraController";
 import PromocaoController from "./controllers/PromocaoController";
 import LogController from "./controllers/LogController";
+import CategoriaController from "./controllers/CategoriaController";
 
 const routes = Router();
 
@@ -17,12 +18,14 @@ routes.delete('/produtos/:id', ProdutoController.delete);
 
 routes.get('/funcionarios', FuncionarioController.index);
 routes.get('/funcionarios/:id', FuncionarioController.show);
+routes.post('/funcionarios/login', FuncionarioController.login);
 routes.post('/funcionarios', FuncionarioController.create);
 routes.put('/funcionarios/:id', FuncionarioController.update);
 routes.delete('/funcionarios/:id', FuncionarioController.delete);
 
 routes.get('/usuarios', UsuarioController.index);
 routes.get('/usuarios/:id', UsuarioController.show);
+routes.post('/usuarios/login', UsuarioController.login);
 routes.post('/usuarios', UsuarioController.create);
 routes.put('/usuarios/:id', UsuarioController.update);
 routes.delete('/usuarios/:id', UsuarioController.delete);
@@ -46,5 +49,11 @@ routes.delete('/promocoes/:id', PromocaoController.delete);
 routes.get('/logs', LogController.index);
 routes.get('/logs/:id', LogController.show);
 routes.post('/logs', LogController.create);
+
+routes.get('/categoria', CategoriaController.index);
+routes.get('/categoria/:id', CategoriaController.show);
+routes.post('/categoria', CategoriaController.create);
+routes.put('/categoria/:id', CategoriaController.update);
+routes.delete('/categoria/:id', CategoriaController.delete);
 
 export default routes;

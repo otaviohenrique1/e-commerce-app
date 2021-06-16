@@ -1,9 +1,9 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class createLog1623790657191 implements MigrationInterface {
+export class createCategoria1623869476771 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(new Table({
-      name: 'log',
+      name: 'categoria',
       columns: [
         {
           name: 'id',
@@ -14,22 +14,26 @@ export class createLog1623790657191 implements MigrationInterface {
           generationStrategy: 'increment'
         },
         {
+          name: 'nome',
+          type: 'varchar'
+        },
+        {
+          name: 'tipo',
+          type: 'varchar'
+        },
+        {
           name: 'id_funcionario',
           type: 'integer'
         },
         {
-          name: 'tempo_acesso',
-          type: 'time'
-        },
-        {
           name: 'data_cadastro',
-          type: 'date'
+          type: 'datetime'
         },
       ]
     }));
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('log');
+    await queryRunner.dropTable('categoria');
   }
 }

@@ -18,7 +18,7 @@ export class createLog1623790657191 implements MigrationInterface {
           type: 'integer'
         },
         {
-          name: 'data_cadastro',
+          name: 'tempo_acesso',
           type: 'time'
         },
         {

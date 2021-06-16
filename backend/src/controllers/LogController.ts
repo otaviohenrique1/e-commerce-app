@@ -19,7 +19,7 @@ export default {
   async create(request: Request, response: Response) {
     const { id_funcionario, tempo_acesso, data_acesso } = request.body;
     const logRepository = getRepository(Log);
-    const data = { id_funcionario, tempo_acesso };
+    const data = { id_funcionario, tempo_acesso, data_acesso };
     const schema = Yup.object().shape({
       id_funcionario: Yup.string().required(),
       tempo_acesso: Yup.date().required(),

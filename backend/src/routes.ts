@@ -2,6 +2,10 @@ import { Router } from "express";
 import ProdutoController from "./controllers/ProdutoController";
 import FuncionarioController from "./controllers/FuncionarioController";
 import UsuarioController from "./controllers/UsuarioController";
+import FavoritoController from "./controllers/FavoritoController";
+import CompraController from "./controllers/CompraController";
+import PromocaoController from "./controllers/PromocaoController";
+import LogController from "./controllers/LogController";
 
 const routes = Router();
 
@@ -22,5 +26,25 @@ routes.get('/usuarios/:id', UsuarioController.show);
 routes.post('/usuarios', UsuarioController.create);
 routes.put('/usuarios/:id', UsuarioController.update);
 routes.delete('/usuarios/:id', UsuarioController.delete);
+
+routes.get('/favoritos', FavoritoController.index);
+routes.get('/favoritos/:id', FavoritoController.show);
+routes.post('/favoritos', FavoritoController.create);
+routes.put('/favoritos/:id', FavoritoController.update);
+routes.delete('/favoritos/:id', FavoritoController.delete);
+
+routes.get('/compras', CompraController.index);
+routes.get('/compras/:id', CompraController.show);
+routes.post('/compras', CompraController.create);
+
+routes.get('/promocoes', PromocaoController.index);
+routes.get('/promocoes/:id', PromocaoController.show);
+routes.post('/promocoes', PromocaoController.create);
+routes.put('/promocoes/:id', PromocaoController.update);
+routes.delete('/promocoes/:id', PromocaoController.delete);
+
+routes.get('/logs', LogController.index);
+routes.get('/logs/:id', LogController.show);
+routes.post('/logs', LogController.create);
 
 export default routes;

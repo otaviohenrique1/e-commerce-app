@@ -24,6 +24,9 @@ export default class Produto {
   fabricante: string;
 
   @Column()
+  categoria: string;
+
+  @Column()
   id_funcionario: number;
 
   @Column()

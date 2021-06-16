@@ -40,6 +40,10 @@ export class createProduto1623114678960 implements MigrationInterface {
           type: 'varchar'
         },
         {
+          name: 'categoria',
+          type: 'varchar'
+        },
+        {
           name: 'id_funcionario',
           type: 'integer'
         },

@@ -30,7 +30,7 @@ export class createFavorito1623790655099 implements MigrationInterface {
           type: 'boolean'
         },
         {
-          name: 'category',
+          name: 'categoria',
           type: 'varchar'
         },
         {

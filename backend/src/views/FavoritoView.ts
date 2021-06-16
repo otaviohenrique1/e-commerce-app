@@ -7,7 +7,7 @@ export default {
       id_usuario: favorito.id_usuario,
       id_produto: favorito.id_produto,
       favoritado: favorito.favoritado,
-      category: favorito.category,
+      categoria: favorito.categoria,
       data_cadastro: favorito.data_cadastro,
     };
   },

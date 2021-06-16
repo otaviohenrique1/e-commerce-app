@@ -17,9 +17,9 @@ export default {
     return response.json(ProdutoView.render(produto));
   },
   async create(request: Request, response: Response) {
-    const { nome, preco, quantidade, unidade, descricao, fabricante, id_funcionario, data_cadastro } = request.body;
+    const { nome, preco, quantidade, unidade, descricao, fabricante, categoria, id_funcionario, data_cadastro } = request.body;
     const produtoRepository = getRepository(Produto);
-    const data = { nome, preco, quantidade, unidade, descricao, fabricante, id_funcionario, data_cadastro };
+    const data = { nome, preco, quantidade, unidade, descricao, fabricante, categoria, id_funcionario, data_cadastro };
     const schema = Yup.object().shape({
       nome: Yup.string().required(),
       preco: Yup.number().required(),
@@ -27,6 +27,7 @@ export default {
       unidade: Yup.string().required(),
       descricao: Yup.string().required(),
       fabricante: Yup.string().required(),
+      categoria: Yup.string().required(),
       id_funcionario: Yup.number().required(),
       data_cadastro: Yup.date().required()
     });
@@ -44,16 +45,17 @@ export default {
     return response.status(200).json(produto);
   },
   async update(request: Request, response: Response) {
-    const { id, nome, preco, descricao, quantidade, unidade, fabricante } = request.body;
+    const { id, nome, preco, descricao, quantidade, unidade, fabricante, categoria } = request.body;
     const produtoRepository = getRepository(Produto);
-    const data = { nome, preco, descricao, quantidade, unidade, fabricante };
+    const data = { nome, preco, descricao, quantidade, unidade, fabricante, categoria };
     const schema = Yup.object().shape({
       nome: Yup.string().required(),
       preco: Yup.number().required(),
       descricao: Yup.string().required(),
       quantidade: Yup.number().required(),
       unidade: Yup.string().required(),
-      fabricante: Yup.string().required()
+      fabricante: Yup.string().required(),
+      categoria: Yup.string().required()
     });
     await schema.validate(data, {
       abortEarly: false

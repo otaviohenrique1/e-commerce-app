@@ -17,14 +17,14 @@ export default {
     return response.json(FavoritoView.render(favorito));
   },
   async create(request: Request, response: Response) {
-    const { id_produto, id_usuario, favoritado, category, data_cadastro } = request.body;
+    const { id_produto, id_usuario, favoritado, categoria, data_cadastro } = request.body;
     const favoritoRepository = getRepository(Favorito);
-    const data = { id_produto, id_usuario, favoritado, category, data_cadastro };
+    const data = { id_produto, id_usuario, favoritado, categoria, data_cadastro };
     const schema = Yup.object().shape({
       id_produto: Yup.number().required(),
       id_usuario: Yup.number().required(),
       favoritado: Yup.boolean().required(),
-      category: Yup.string().required(),
+      categoria: Yup.string().required(),
       data_cadastro: Yup.date().required()
     });
     await schema.validate(data, {
@@ -41,14 +41,14 @@ export default {
     return response.status(200).json(favorito);
   },
   async update(request: Request, response: Response) {
-    const { id, id_produto, id_usuario, favoritado, category, data_cadastro } = request.body;
+    const { id, id_produto, id_usuario, favoritado, categoria, data_cadastro } = request.body;
     const favoritoRepository = getRepository(Favorito);
-    const data = { id_produto, id_usuario, favoritado, category, data_cadastro };
+    const data = { id_produto, id_usuario, favoritado, categoria, data_cadastro };
     const schema = Yup.object().shape({
       id_produto: Yup.number().required(),
       id_usuario: Yup.number().required(),
       favoritado: Yup.boolean().required(),
-      category: Yup.string().required(),
+      categoria: Yup.string().required(),
       data_cadastro: Yup.date().required()
     });
     await schema.validate(data, {

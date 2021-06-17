@@ -1,58 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, ListGroup, ListGroupItem, Col, Button } from 'reactstrap';
-// import apiTeste4 from '../../../services/api_teste/api_teste_4';
 import apiServer from "../../../services/api_server";
 
-interface UsuarioDadosProps {
+interface CategoriaDadosProps {
   id: string;
   nome: string;
-  email: string;
-  senha: string;
+  tipo: string;
+  data_cadastro: Date;
 }
 
-interface QuadrinhosDadosParamsProps {
+interface CategoriaDadosParamsProps {
   id: string;
 }
 
 const dadosIniciais = {
   id: '',
   nome: '',
-  email: '',
-  senha: ''
+  tipo: '',
+  data_cadastro: new Date(`${new Date().getFullYear()} - ${new Date().getMonth() + 1} - ${new Date().getDate()} ${new Date().getSeconds()} : ${new Date().getMinutes()} - ${new Date().getHours()}`)
 };
 
-export default function UsuarioDados() {
-  const [usuarioDados, setUsuarioDados] = useState<UsuarioDadosProps>(dadosIniciais);
+export default function CategoriaDados() {
+  const [categoriaDados, setCategoriaDados] = useState<CategoriaDadosProps>(dadosIniciais);
 
-  const { id } = useParams<QuadrinhosDadosParamsProps>();
+  const { id } = useParams<CategoriaDadosParamsProps>();
 
   useEffect(() => {
-    apiServer.get(`usuarios/${id}`)
+    apiServer.get(`categorias/${id}`)
     .then((response) => {
-      setUsuarioDados({
+      setCategoriaDados({
         id: response.data.id,
         nome: response.data.nome,
-        email: response.data.email,
-        senha: response.data.senha,
+        tipo: response.data.tipo,
+        data_cadastro: response.data.data_cadastro
       });
     })
     .catch((error) => console.log(`Erro => ${error}`));
   }, [id]);
-
-  // useEffect(() => {
-  //   apiTeste4.find((item) => {
-  //     if (item.id === id) {
-  //       setUsuarioDados({
-  //         id: item.id,
-  //         name: item.name,
-  //         email: item.email,
-  //         senha: item.senha
-  //       })
-  //     }
-  //     return '';
-  //   });
-  // }, [id]);
 
   return (
     <Row>
@@ -62,28 +47,20 @@ export default function UsuarioDados() {
       <Col md={12}>
         <ListGroup>
         <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Id Usuario: </span>
-            {usuarioDados.id}
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Id Categoria: </span>
+            {categoriaDados.id}
           </ListGroupItem>
           <ListGroupItem>
             <span className='mr-2' style={{fontWeight: 'bold'}}>Nome: </span>
-            {usuarioDados.nome}
+            {categoriaDados.nome}
           </ListGroupItem>
           <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Email: </span>
-            {usuarioDados.email}
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Tipo: </span>
+            {categoriaDados.tipo}
           </ListGroupItem>
           <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Senha: </span>
-            <input
-              type="password"
-              readOnly
-              value={usuarioDados.senha}
-              style={{
-                border: 0,
-              }}
-            />
-            {/* {usuarioDados.senha} */}
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Data de cadastro: </span>
+            {(categoriaDados.data_cadastro).toString()}
           </ListGroupItem>
           <ListGroupItem>
             <Col style={{ textAlign: 'right' }}>

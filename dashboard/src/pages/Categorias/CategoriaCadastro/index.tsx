@@ -16,7 +16,7 @@ interface FormTypes {
   tipo: string;
 }
 
-export default function ProdutoCadastro() {
+export default function CategoriaCadastro() {
   const history = useHistory();
   const { usuarioData } = useAppContext();
 

@@ -1,58 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, ListGroup, ListGroupItem, Col, Button } from 'reactstrap';
-// import apiTeste4 from '../../../services/api_teste/api_teste_4';
 import apiServer from "../../../services/api_server";
 
-interface UsuarioDadosProps {
+interface ProdutoDadosProps {
   id: string;
   nome: string;
-  email: string;
-  senha: string;
+  quantidade: number;
+  unidade: string;
+  descricao: string;
+  preco: number;
+  fabricante: string;
+  categoria: string;
+  id_funcionario: string;
+  data_cadastro: Date;
 }
 
-interface QuadrinhosDadosParamsProps {
+interface ProdutoDadosParamsProps {
   id: string;
 }
 
 const dadosIniciais = {
   id: '',
   nome: '',
-  email: '',
-  senha: ''
+  quantidade: 0,
+  unidade: '',
+  descricao: '',
+  preco: 0.0,
+  fabricante: '',
+  categoria: '',
+  id_funcionario: '',
+  data_cadastro: new Date(`${new Date().getFullYear()} - ${new Date().getMonth() + 1} - ${new Date().getDate()} ${new Date().getSeconds()} : ${new Date().getMinutes()} - ${new Date().getHours()}`)
 };
 
-export default function UsuarioDados() {
-  const [usuarioDados, setUsuarioDados] = useState<UsuarioDadosProps>(dadosIniciais);
-
-  const { id } = useParams<QuadrinhosDadosParamsProps>();
+export default function ProdutoDados() {
+  const [produtoDados, setProdutoDados] = useState<ProdutoDadosProps>(dadosIniciais);
+  const { id } = useParams<ProdutoDadosParamsProps>();
 
   useEffect(() => {
-    apiServer.get(`usuarios/${id}`)
+    apiServer.get(`produtos/${id}`)
     .then((response) => {
-      setUsuarioDados({
+      setProdutoDados({
         id: response.data.id,
         nome: response.data.nome,
-        email: response.data.email,
-        senha: response.data.senha,
+        quantidade: response.data.quantidade,
+        unidade: response.data.unidade,
+        descricao: response.data.descricao,
+        preco: response.data.preco,
+        fabricante: response.data.fabricante,
+        categoria: response.data.categoria,
+        id_funcionario: response.data.id_funcionario,
+        data_cadastro: response.data.data_cadastro
       });
     })
     .catch((error) => console.log(`Erro => ${error}`));
   }, [id]);
-
-  // useEffect(() => {
-  //   apiTeste4.find((item) => {
-  //     if (item.id === id) {
-  //       setUsuarioDados({
-  //         id: item.id,
-  //         name: item.name,
-  //         email: item.email,
-  //         senha: item.senha
-  //       })
-  //     }
-  //     return '';
-  //   });
-  // }, [id]);
 
   return (
     <Row>
@@ -61,29 +63,35 @@ export default function UsuarioDados() {
       </Col>
       <Col md={12}>
         <ListGroup>
-        <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Id Usuario: </span>
-            {usuarioDados.id}
+          <ListGroupItem>
+            <span className='mr-2' style={{fontWeight: 'bold'}}>ID do produto: </span>{produtoDados.id}
           </ListGroupItem>
           <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Nome: </span>
-            {usuarioDados.nome}
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Quantidade: </span>
+            {(produtoDados.quantidade).toFixed(2).toString()} {produtoDados.unidade}
           </ListGroupItem>
           <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Email: </span>
-            {usuarioDados.email}
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Descrição: </span>
+            <p>{produtoDados.descricao}</p>
           </ListGroupItem>
           <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>Senha: </span>
-            <input
-              type="password"
-              readOnly
-              value={usuarioDados.senha}
-              style={{
-                border: 0,
-              }}
-            />
-            {/* {usuarioDados.senha} */}
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Preço: </span>
+            {(produtoDados.preco).toFixed(2).toString()}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Fabricante: </span>{produtoDados.fabricante}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Categoria/Subcategoria: </span>
+            {produtoDados.categoria}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='mr-2' style={{fontWeight: 'bold'}}>ID do funcionario: </span>
+            {produtoDados.id_funcionario}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='mr-2' style={{fontWeight: 'bold'}}>Data de cadastro: </span>
+            {(produtoDados.data_cadastro).toString()}
           </ListGroupItem>
           <ListGroupItem>
             <Col style={{ textAlign: 'right' }}>

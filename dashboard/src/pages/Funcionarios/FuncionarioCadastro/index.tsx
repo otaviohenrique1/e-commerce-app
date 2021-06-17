@@ -4,7 +4,7 @@ import { Container, Row, Col, Button, ButtonGroup, Alert } from "reactstrap";
 import Campo from "../../../components/Campo";
 import { Link } from "react-router-dom";
 // import apiServer from "../../../services/api_server";
-import '../../../styles/scss/usuario/style.scss';
+import '../../../styles/scss/funcionarios/style.scss';
 // import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { estado_lista, sexo_lista } from "../../../utils/listas";

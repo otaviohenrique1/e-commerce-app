@@ -4,12 +4,12 @@ import { Navbar, Collapse, Nav, NavbarBrand, NavbarToggler, UncontrolledDropdown
 // import { Navbar, Collapse, Nav, NavbarBrand, NavbarToggler, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem } from "reactstrap";
 import { BsChatSquareDots, BsPersonFill } from "react-icons/bs";
 import '../../styles/scss/header/style.scss'
-// import { useAppContext } from "../../contexts/AppContext";
+import { useAppContext } from "../../contexts/AppContext";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  // const { usuarioData } = useAppContext();
+  const { usuarioData } = useAppContext();
   
   return (
     <>
@@ -56,6 +56,52 @@ export default function Header() {
                 </Link>
               </DropdownMenu>
             </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Logs
+              </DropdownToggle>
+              <DropdownMenu right>
+                <Link className="nav-item-link" to="/funcionarios">
+                  <DropdownItem>
+                    Lista
+                  </DropdownItem>
+                </Link>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Categorias
+              </DropdownToggle>
+              <DropdownMenu right>
+                <Link className="nav-item-link" to="/funcionarios">
+                  <DropdownItem>
+                    Lista
+                  </DropdownItem>
+                </Link>
+                <Link className="nav-item-link" to="/funcionarios/cadastro">
+                  <DropdownItem>
+                    Cadastro
+                  </DropdownItem>
+                </Link>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Promocoes
+              </DropdownToggle>
+              <DropdownMenu right>
+                <Link className="nav-item-link" to="/funcionarios">
+                  <DropdownItem>
+                    Lista
+                  </DropdownItem>
+                </Link>
+                <Link className="nav-item-link" to="/funcionarios/cadastro">
+                  <DropdownItem>
+                    Cadastro
+                  </DropdownItem>
+                </Link>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </Nav>
           <DropdownItem divider />
           <Nav navbar>
@@ -67,7 +113,7 @@ export default function Header() {
                 <DropdownItem>
                   {/* {apiTeste4[0].name} */}
                   <span>
-                    {/* {usuarioData.nome} */}
+                    {usuarioData.nome}
                     Nome
                   </span>
                 </DropdownItem>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Row, ListGroup, ListGroupItem, Col, Button } from 'reactstrap';
 import apiServer from "../../../services/api_server";
+import '../../../styles/scss/produtos/style.scss';
 
 interface ProdutoDadosProps {
   id: string;
@@ -20,7 +21,7 @@ interface ProdutoDadosParamsProps {
   id: string;
 }
 
-const dadosIniciais = {
+const dadosIniciaisProduto = {
   id: '',
   nome: '',
   quantidade: 0,
@@ -33,8 +34,19 @@ const dadosIniciais = {
   data_cadastro: new Date(`${new Date().getFullYear()} - ${new Date().getMonth() + 1} - ${new Date().getDate()} ${new Date().getSeconds()} : ${new Date().getMinutes()} - ${new Date().getHours()}`)
 };
 
+interface FuncionarioDadosProps {
+  nome: string;
+  cargo: string;
+}
+
+const dadosIniciaisFuncionario = {
+  nome: '',
+  cargo: ''
+};
+
 export default function ProdutoDados() {
-  const [produtoDados, setProdutoDados] = useState<ProdutoDadosProps>(dadosIniciais);
+  const [produtoDados, setProdutoDados] = useState<ProdutoDadosProps>(dadosIniciaisProduto);
+  const [funcionarioDados, setFuncionarioDados] = useState<FuncionarioDadosProps>(dadosIniciaisFuncionario);
   const { id } = useParams<ProdutoDadosParamsProps>();
 
   useEffect(() => {
@@ -55,6 +67,17 @@ export default function ProdutoDados() {
     })
     .catch((error) => console.log(`Erro => ${error}`));
   }, [id]);
+
+  useEffect(() => {
+    apiServer.get(`funcionarios/${produtoDados.id_funcionario}`)
+    .then((response) => {
+      setFuncionarioDados({
+        nome: response.data.nome,
+        cargo: response.data.cargo,
+      });
+    })
+    .catch((error) => console.log(`Erro => ${error}`));
+  }, [produtoDados.id_funcionario]);
 
   return (
     <Row>
@@ -86,8 +109,23 @@ export default function ProdutoDados() {
             {produtoDados.categoria}
           </ListGroupItem>
           <ListGroupItem>
-            <span className='mr-2' style={{fontWeight: 'bold'}}>ID do funcionario: </span>
-            {produtoDados.id_funcionario}
+            <Row>
+              <Col md={12}>
+                <span className='mr-2' style={{fontWeight: 'bold'}}>Cadastrado por:</span>
+              </Col>
+              <Col md={3}>
+                <span className='mr-2' style={{fontWeight: 'bold'}}>ID: </span>
+                {produtoDados.id_funcionario}
+              </Col>
+              <Col md={5}>
+                <span className='mr-2' style={{fontWeight: 'bold'}}>Nome: </span>
+                {funcionarioDados.nome}
+              </Col>
+              <Col md={4}>
+                <span className='mr-2' style={{fontWeight: 'bold'}}>Cargo: </span>
+                {funcionarioDados.cargo}
+              </Col>
+            </Row>
           </ListGroupItem>
           <ListGroupItem>
             <span className='mr-2' style={{fontWeight: 'bold'}}>Data de cadastro: </span>

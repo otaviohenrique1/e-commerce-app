@@ -17,7 +17,7 @@ interface FormTypes {
 }
 
 export default function Login() {
-  const { setUsuarioData } = useAppContext();
+  const { setFuncionarioData } = useAppContext();
 
   const initialValues = {
     email: '',
@@ -25,23 +25,16 @@ export default function Login() {
   };
 
   const validationSchema = Yup.object().shape({
-    email: Yup
-      .string()
-      .email()
-      .required('O campo email é obrigatorio'),
-    senha: Yup
-      .string()
-      .min(8)
-      .max(32)
-      // .matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]$")
-      .required('O campo senha é obrigatorio'),
+    email: Yup.string().email().required('O campo email é obrigatorio'),
+    senha: Yup.string().min(8).max(32).required('O campo senha é obrigatorio'),
+    // .matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*d)[a-zA-Zd]$")
   });
 
   const history = useHistory();
 
   async function handleSubmitForm(values: FormTypes) {
     history.push('/home');
-    return apiServer.post('usuarios/login', {
+    return apiServer.post('funcionarios/login', {
       email: values.email,
       senha: values.senha,
     }, {
@@ -52,17 +45,20 @@ export default function Login() {
       }
     })
     .then((data) => {
-      setUsuarioData({
-        id: data.data.dataUser.id,
-        nome: data.data.dataUser.nome,
-        email: data.data.dataUser.email,
+      setFuncionarioData({
+        id: data.data.data_user.id,
+        nome: data.data.data_user.nome,
+        email: data.data.data_user.email,
       });
       apiServer.post('logs', {
-        'id_funcionario': data.data.dataUser.id,
+        'id_funcionario': data.data.data_user.id,
         'tempo_acesso': new Date(`${new Date().getSeconds()} : ${new Date().getMinutes()} - ${new Date().getHours()}`),
         'data_acesso': new Date(`${new Date().getFullYear()} - ${new Date().getMonth() + 1} - ${new Date().getDate()}`)
       })
-      history.push('/home');
+      console.log(data.data.data_user.id);
+      console.log(data.data.data_user.nome);
+      console.log(data.data.data_user.email);
+      // history.push('/home');
     })
     .catch((error) => {
       alert('Usuario ou senha invalidos');
@@ -74,7 +70,7 @@ export default function Login() {
     <Container>
       <Row>
         <Col md={12} className="mb-3 mt-5">
-          <h1><BsChatSquareDots size={40} className='mr-3'/>Marvel-App</h1>
+          <h1><BsChatSquareDots size={40} className='mr-3'/>E-Commerce-App</h1>
         </Col>
         <Col md={12}>
           <Formik

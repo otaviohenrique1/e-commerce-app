@@ -13,8 +13,8 @@ const dadosIniciaisFuncionario = {
 };
 
 type AppContextData =  {
-  usuarioData: Funcionario;
-  setUsuarioData: React.Dispatch<React.SetStateAction<Funcionario>>;
+  funcionarioData: Funcionario;
+  setFuncionarioData: React.Dispatch<React.SetStateAction<Funcionario>>;
 }
 
 export const AppContext = createContext({} as AppContextData);
@@ -29,8 +29,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   return (
     <AppContext.Provider
       value={{
-        usuarioData: funcionarioData,
-        setUsuarioData: setFuncionarioData
+        funcionarioData,
+        setFuncionarioData
       }}
     >
       {children}

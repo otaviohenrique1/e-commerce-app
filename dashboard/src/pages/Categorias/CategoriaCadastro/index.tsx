@@ -3,7 +3,6 @@ import { Container, Row, Col, Button, ButtonGroup, Alert } from "reactstrap";
 import Campo from "../../../components/Campo";
 import { Link } from "react-router-dom";
 import apiServer from "../../../services/api_server";
-import '../../../styles/scss/usuario/style.scss';
 import { useHistory } from "react-router-dom";
 import { Formik, Form} from "formik";
 import * as Yup from "yup";
@@ -18,7 +17,7 @@ interface FormTypes {
 
 export default function CategoriaCadastro() {
   const history = useHistory();
-  const { usuarioData } = useAppContext();
+  const { funcionarioData } = useAppContext();
 
   const initialValues = {
     nome: '',
@@ -34,7 +33,7 @@ export default function CategoriaCadastro() {
     await apiServer.post('categorias', {
       'nome': (values.nome).toString(),
       'tipo': (values.tipo).toString(),
-      'id_funcionario': usuarioData.id,
+      'id_funcionario': funcionarioData.id,
       'data_cadastro': new Date(`${new Date().getFullYear()} - ${new Date().getMonth() + 1} - ${new Date().getDate()} ${new Date().getSeconds()} : ${new Date().getMinutes()} - ${new Date().getHours()}`)
     })
     .then(() => {

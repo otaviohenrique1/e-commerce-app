@@ -3,47 +3,56 @@ import { Container, Row, Col, Button, ButtonGroup, Alert } from "reactstrap";
 import Campo from "../../../components/Campo";
 import { Link } from "react-router-dom";
 // import apiServer from "../../../services/api_server";
-import '../../../styles/scss/usuario/style.scss';
-// import { useHistory } from "react-router-dom";
+// import '../../../styles/scss/usuario/style.scss';
+import { useHistory } from "react-router-dom";
 import { Formik, Form} from "formik";
 import * as Yup from "yup";
+import { useAppContext } from "../../../contexts/AppContext";
 
 interface FormTypes {
   nome: string;
-  quantidade: number;
-  unidade: string;
+  tema: string;
+  produtos: string;
   descricao: string;
-  preco: number;
-  fabricante: string;
+  inicio: Date;
+  termino: Date;
 }
 
-export default function ProdutoCadastro() {
-  // const history = useHistory();
+export default function PromocaoCadastro() {
+  const history = useHistory();
+  const { usuarioData } = useAppContext();
 
   const initialValues = {
     nome: '',
-    quantidade: 0,
-    unidade: '',
+    tema: '',
+    produtos: '',
     descricao: '',
-    preco: 0,
-    fabricante: '',
+    inicio: new Date(`${new Date().getDate()} / ${new Date().getMonth() + 1} / ${new Date().getFullYear()}`),
+    termino: new Date(`${new Date().getDate()} / ${new Date().getMonth() + 1} / ${new Date().getFullYear()}`)
   };
 
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required('O campo nome é obrigatorio'),
-    preco: Yup.number().required('O campo preco é obrigatorio'),
+    tema: Yup.string().required('O campo tema é obrigatorio'),
+    produtos: Yup.string().required('O campo produtos é obrigatorio'),
     descricao: Yup.string().required('O campo descricao é obrigatorio'),
-    quantidade: Yup.number().required('O campo quantidade é obrigatorio'),
-    unidade: Yup.string().required('O campo unidade é obrigatorio'),
-    fabricante: Yup.string().required('O campo fabricante é obrigatorio')
+    inicio: Yup.date().required('O campo inicio é obrigatorio'),
+    termino: Yup.date().required('O campo termino é obrigatorio')
   });
 
   async function handleSubmitForm(values: FormTypes) {
     alert('Cadastro realizado com sucesso!');
+    console.log(values);
+    console.log(usuarioData.id);
+    console.log(new Date(`${new Date().getDate()} / ${new Date().getMonth() + 1} / ${new Date().getFullYear()} ${new Date().getSeconds()} : ${new Date().getMinutes()} : ${new Date().getHours()}`));
+    history.push('/');
+
     // await apiServer.post('usuarios', {
-    //   'nome': (values.nome).toString(),
-    //   'email': (values.email).toString(),
-    //   'senha': (md5(values.senha).toString())
+    //  'nome': (values.nome).toString(),
+    //  'tema': (values.tema).toString(),
+    //  'produtos': (values.produtos).toString(),
+    //  'inicio': (values.inicio).toString(),
+    //  'termino': (values.termino).toString()
     // })
     // .then(() => {
     //   alert('Cadastro realizado com sucesso!');
@@ -84,18 +93,28 @@ export default function ProdutoCadastro() {
                 />
                 <Campo
                   className="mt-2"
-                  htmlFor="preco"
-                  label="Preço"
-                  typeInput="number"
-                  nameInput="preco"
-                  idInput="preco"
+                  htmlFor="tema"
+                  label="Tema da promoção"
+                  typeInput="text"
+                  nameInput="tema"
+                  idInput="tema"
                   placeholderInput="Digite a preço do usuario"
-                  erro={(errors.preco && touched.preco) ? (<Alert color="danger">{errors.preco}</Alert>) : null}
+                  erro={(errors.tema && touched.tema) ? (<Alert color="danger">{errors.tema}</Alert>) : null}
+                />
+                <Campo
+                  className="mt-2"
+                  htmlFor="produtos"
+                  label="Produtos da promoção"
+                  typeInput="textarea"
+                  nameInput="produtos"
+                  idInput="produtos"
+                  placeholderInput="Digite a descrição do usuario"
+                  erro={(errors.produtos && touched.produtos) ? (<Alert color="danger">{errors.produtos}</Alert>) : null}
                 />
                 <Campo
                   className="mt-2"
                   htmlFor="descricao"
-                  label="Descrição"
+                  label="descrição da promoção"
                   typeInput="textarea"
                   nameInput="descricao"
                   idInput="descricao"
@@ -104,33 +123,23 @@ export default function ProdutoCadastro() {
                 />
                 <Campo
                   className="mt-2"
-                  htmlFor="quantidade"
-                  label="Quantidade"
-                  typeInput="number"
-                  nameInput="quantidade"
-                  idInput="quantidade"
-                  placeholderInput="Digite a quantidade do usuario"
-                  erro={(errors.quantidade && touched.quantidade) ? (<Alert color="danger">{errors.quantidade}</Alert>) : null}
+                  htmlFor="inicio"
+                  label="Inicio"
+                  typeInput="date"
+                  nameInput="inicio"
+                  idInput="inicio"
+                  placeholderInput="Digite a inicio do usuario"
+                  erro={(errors.inicio && touched.inicio) ? (<Alert color="danger">{errors.inicio}</Alert>) : null}
                 />
                 <Campo
                   className="mt-2"
-                  htmlFor="unidade"
-                  label="Unidade"
+                  htmlFor="termino"
+                  label="Termino"
                   typeInput="number"
-                  nameInput="unidade"
-                  idInput="unidade"
-                  placeholderInput="Digite a unidade do usuario"
-                  erro={(errors.unidade && touched.unidade) ? (<Alert color="danger">{errors.unidade}</Alert>) : null}
-                />
-                <Campo
-                  className="mt-2"
-                  htmlFor="fabricante"
-                  label="Fabricante"
-                  typeInput="text"
-                  nameInput="fabricante"
-                  idInput="fabricante"
-                  placeholderInput="Digite a fabricante do usuario"
-                  erro={(errors.fabricante && touched.fabricante) ? (<Alert color="danger">{errors.fabricante}</Alert>) : null}
+                  nameInput="termino"
+                  idInput="termino"
+                  placeholderInput="Digite a termino do usuario"
+                  erro={(errors.termino && touched.termino) ? (<Alert color="danger">{errors.termino}</Alert>) : null}
                 />
                 <ButtonGroup className="mt-5">
                   <Button color="primary" type="submit">Salvar</Button>

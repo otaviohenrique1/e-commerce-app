@@ -26,6 +26,10 @@ export class createPromocao1623790661291 implements MigrationInterface {
           type: 'varchar'
         },
         {
+          name: 'descricao',
+          type: 'varchar'
+        },
+        {
           name: 'inicio',
           type: 'date'
         },

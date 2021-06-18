@@ -15,6 +15,9 @@ export default class Promocao {
   produtos: string;
 
   @Column()
+  descricao: string;
+
+  @Column()
   inicio: Date;
 
   @Column()

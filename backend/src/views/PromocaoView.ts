@@ -7,6 +7,7 @@ export default {
       nome: promocao.nome,
       tema: promocao.tema,
       produtos: promocao.produtos,
+      descricao: promocao.descricao,
       inicio: promocao.inicio,
       termino: promocao.termino,
       id_funcionario: promocao.id_funcionario,

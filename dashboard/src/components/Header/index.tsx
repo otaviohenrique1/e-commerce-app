@@ -61,7 +61,7 @@ export default function Header() {
                 Logs
               </DropdownToggle>
               <DropdownMenu right>
-                <Link className="nav-item-link" to="/funcionarios">
+                <Link className="nav-item-link" to="/logs">
                   <DropdownItem>
                     Lista
                   </DropdownItem>
@@ -73,12 +73,12 @@ export default function Header() {
                 Categorias
               </DropdownToggle>
               <DropdownMenu right>
-                <Link className="nav-item-link" to="/funcionarios">
+                <Link className="nav-item-link" to="/categorias">
                   <DropdownItem>
                     Lista
                   </DropdownItem>
                 </Link>
-                <Link className="nav-item-link" to="/funcionarios/cadastro">
+                <Link className="nav-item-link" to="/categorias/cadastro">
                   <DropdownItem>
                     Cadastro
                   </DropdownItem>
@@ -90,12 +90,12 @@ export default function Header() {
                 Promocoes
               </DropdownToggle>
               <DropdownMenu right>
-                <Link className="nav-item-link" to="/funcionarios">
+                <Link className="nav-item-link" to="/promocoes">
                   <DropdownItem>
                     Lista
                   </DropdownItem>
                 </Link>
-                <Link className="nav-item-link" to="/funcionarios/cadastro">
+                <Link className="nav-item-link" to="/promocoes/cadastro">
                   <DropdownItem>
                     Cadastro
                   </DropdownItem>
@@ -111,17 +111,13 @@ export default function Header() {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  {/* {apiTeste4[0].name} */}
                   <span>
                     {usuarioData.nome}
                     Nome
                   </span>
                 </DropdownItem>
                 <DropdownItem>
-                  Perfil
-                  {/* <Link className="nav-item-link" to={`/usuario/${apiTeste4[0].id}`}>Perfil</Link> */}
-                  {/* <Link className="nav-item-link" to={`/usuario/${'1'}`}>Perfil</Link> */}
-                  {/* <Link className="nav-item-link" to={`/usuario/${usuarioData.id}`}>Perfil</Link> */}
+                  <Link className="nav-item-link" to={`/funcionarios/${usuarioData.id}`}>Perfil</Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>

@@ -17,13 +17,14 @@ export default {
     return response.json(PromocaoView.render(promocao));
   },
   async create(request: Request, response: Response) {
-    const { nome, tema, produtos, inicio, termino, id_funcionario, data_cadastro } = request.body;
+    const { nome, tema, produtos, descricao, inicio, termino, id_funcionario, data_cadastro } = request.body;
     const promocaoRepository = getRepository(Promocao);
-    const data = { nome, tema, produtos, inicio, termino, id_funcionario, data_cadastro };
+    const data = { nome, tema, produtos, descricao, inicio, termino, id_funcionario, data_cadastro };
     const schema = Yup.object().shape({
       nome: Yup.string().required(),
       tema: Yup.string().required(),
       produtos: Yup.string().required(),
+      descricao: Yup.string().required(),
       inicio: Yup.date().required(),
       termino: Yup.date().required(),
       id_funcionario: Yup.number().required(),
@@ -43,13 +44,14 @@ export default {
     return response.status(200).json(promocao);
   },
   async update(request: Request, response: Response) {
-    const { id, nome, tema, produtos, inicio, termino } = request.body;
+    const { id, nome, tema, produtos, descricao, inicio, termino } = request.body;
     const promocaoRepository = getRepository(Promocao);
-    const data = { nome, tema, produtos, inicio, termino };
+    const data = { nome, tema, produtos, descricao, inicio, termino };
     const schema = Yup.object().shape({
       nome: Yup.string().required(),
       tema: Yup.string().required(),
       produtos: Yup.string().required(),
+      descricao: Yup.string().required(),
       inicio: Yup.date().required(),
       termino: Yup.date().required(),
     });

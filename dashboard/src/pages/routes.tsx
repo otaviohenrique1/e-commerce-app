@@ -12,6 +12,11 @@ import UsuarioLista from "./Usuarios/UsuarioLista";
 import CategoriaLista from "./Categorias/CategoriaLista";
 import CategoriaDados from "./Categorias/CategoriaDados";
 import CategoriaCadastro from "./Categorias/CategoriaCadastro";
+import LogDados from "./Logs/LogsDados";
+import LogLista from "./Logs/LogsLista";
+import PromocoesLista from "./Promocoes/PromocoesLista";
+import PromocoesCadastro from "./Promocoes/PromocoesCadastro";
+import PromocoesDados from "./Promocoes/PromocoesDados";
 
 export default function Routes() {
   return (
@@ -30,6 +35,11 @@ export default function Routes() {
             <Route component={ProdutoDados} path="/produtos/:id" exact/>
             <Route component={FuncionarioDados} path="/funcionarios/:id" exact/>
             <Route component={CategoriaDados} path="/categorias/:id" exact/>
+            <Route component={LogLista} path="/logs" exact/>
+            <Route component={LogDados} path="/logs/:id" exact/>
+            <Route component={PromocoesCadastro} path="/promocoes/cadastro" exact/>
+            <Route component={PromocoesLista} path="/promocoes" exact/>
+            <Route component={PromocoesDados} path="/promocoes/:id" exact/>
             <Route component={UsuarioLista} path="/usuarios" exact/>
           </PageContainer>
         </Switch>

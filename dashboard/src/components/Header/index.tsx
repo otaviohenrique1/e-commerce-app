@@ -9,7 +9,7 @@ import { useAppContext } from "../../contexts/AppContext";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  const { usuarioData } = useAppContext();
+  const { funcionarioData } = useAppContext();
   
   return (
     <>
@@ -112,12 +112,11 @@ export default function Header() {
               <DropdownMenu right>
                 <DropdownItem>
                   <span>
-                    {usuarioData.nome}
-                    Nome
+                    {funcionarioData.nome}
                   </span>
                 </DropdownItem>
                 <DropdownItem>
-                  <Link className="nav-item-link" to={`/funcionarios/${usuarioData.id}`}>Perfil</Link>
+                  <Link className="nav-item-link" to={`/funcionarios/${funcionarioData.id}`}>Perfil</Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>

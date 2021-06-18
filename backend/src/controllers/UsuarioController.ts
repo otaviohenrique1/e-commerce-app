@@ -20,12 +20,12 @@ export default {
       console.log(`${email}, ${senha}`);
       return response.status(401).json({ message: mensagemErro });
     }
-    let dataUser = {
+    let data_user = {
       id: existingUser.id,
       nome: existingUser.nome,
       email: existingUser.email,
     };
-    return response.status(200).json({ message: "Logado com sucesso!", dataUser });
+    return response.status(200).json({ message: "Logado com sucesso!", data_user });
   },
   async index(request: Request, response: Response) {
     const usuarioRepository = getRepository(Usuario);

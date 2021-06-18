@@ -20,7 +20,7 @@ interface FormTypes {
 
 export default function PromocaoCadastro() {
   const history = useHistory();
-  const { usuarioData } = useAppContext();
+  const { funcionarioData } = useAppContext();
 
   const initialValues = {
     nome: '',
@@ -43,7 +43,7 @@ export default function PromocaoCadastro() {
   async function handleSubmitForm(values: FormTypes) {
     alert('Cadastro realizado com sucesso!');
     console.log(values);
-    console.log(usuarioData.id);
+    console.log(funcionarioData.id);
     console.log(new Date(`${new Date().getDate()} / ${new Date().getMonth() + 1} / ${new Date().getFullYear()} ${new Date().getSeconds()} : ${new Date().getMinutes()} : ${new Date().getHours()}`));
     history.push('/');
 

@@ -5,7 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import '../../styles/scss/login/style.scss';
 import { BsChatSquareDots } from "react-icons/bs";
 import apiServer from "../../services/api_server";
-import { Formik, Form} from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useAppContext } from "../../contexts/AppContext";
 // import md5 from "md5";

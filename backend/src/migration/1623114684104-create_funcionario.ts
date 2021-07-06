@@ -108,7 +108,7 @@ export class createFuncionario1623114684104 implements MigrationInterface {
             type: 'datetime'
           },
         ],
-      }))
+      }));
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
